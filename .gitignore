@@ -1,0 +1,78 @@
+# Environment Variables
+.env
+.env.local
+.env.*.local
+
+# Sensitive Data
+secrets.json
+*credentials*
+*password*
+SQL_SETUP_USERS.sql
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+venv/
+ENV/
+env/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Project specific
+hotel_dashboard.db
+*.db
+*.sqlite
+01-02-2026/
+local_data/
+load_data.py
+query_database.py
+test_*.py
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Logs
+*.log
+
+# Streamlit
+.streamlit/secrets.toml
+.streamlit/config.toml
+
+# Data Folders (test/sample data - keep local only)
+01-02-2026/
+1html DASHBOARD /
+
+# OS
+.DS_Store
+Thumbs.db
