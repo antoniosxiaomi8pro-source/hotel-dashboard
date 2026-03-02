@@ -28,9 +28,23 @@ def login_page():
         
         if st.button("🔓 Login", use_container_width=True):
             if email and password:
-                user = authenticate_user(email, password)
+                # Test credentials (hardcoded for demo)
+                test_users = {
+                    "admin@cosmhotel.gr": "admin123",
+                    "manager@cosmhotel.gr": "manager123",
+                    "viewer@cosmhotel.gr": "viewer123"
+                }
                 
-                if user:
+                if email in test_users and test_users[email] == password:
+                    # For demo, create a simple user object
+                    user = {
+                        "id": "demo-user",
+                        "email": email,
+                        "full_name": email.split("@")[0].title(),
+                        "hotel_name": "Porto Greco",
+                        "role": "admin" if "admin" in email else ("manager" if "manager" in email else "viewer")
+                    }
+                    
                     st.session_state.authenticated = True
                     st.session_state.user = user
                     st.session_state.user_id = user["id"]

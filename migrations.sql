@@ -145,9 +145,9 @@ CREATE INDEX idx_audit_hotel_date ON audit_log(hotel_name, created_at DESC);
 -- ============================================================================
 
 INSERT INTO users (email, password_hash, full_name, hotel_name, role, is_active) VALUES
-  ('admin@cosmhotel.gr', '$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY5YmMxSUl/2wUm', 'Administrator', 'Porto Greco', 'admin', true),
-  ('manager@cosmhotel.gr', '$2b$12$kDQ7FGQ8T1K9gFQJ8p3RYO5ZP3Z8gFQJ8p3RYO5ZP3Z8gFQJ8p3RY', 'Manager', 'Porto Greco', 'manager', true),
-  ('viewer@cosmhotel.gr', '$2b$12$xYz9aAbBcCdDeEfGgHhIiJ9aAbBcCdDeEfGgHhIiJ9aAbBcCdDeEf', 'Viewer', 'Porto Greco', 'viewer', true)
+  ('admin@cosmhotel.gr', '240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9', 'Administrator', 'Porto Greco', 'admin', true),
+  ('manager@cosmhotel.gr', '866485796cfa8d7c0cf7111640205b83076433547577511d81f8030ae99ecea5', 'Manager', 'Porto Greco', 'manager', true),
+  ('viewer@cosmhotel.gr', '65375049b9e4d7cad6c9ba286fdeb9394b28135a3e84136404cfccfdcc438894', 'Viewer', 'Porto Greco', 'viewer', true)
 ON CONFLICT (email) DO NOTHING;
 
 -- ============================================================================
