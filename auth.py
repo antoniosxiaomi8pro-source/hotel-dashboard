@@ -2,7 +2,7 @@
 Authentication Module for Streamlit
 """
 import streamlit as st
-from supabase_client import authenticate_user, get_user
+from supabase_client import authenticate_user, get_user, hash_password
 
 
 def check_password():

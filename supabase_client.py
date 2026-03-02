@@ -5,8 +5,8 @@ Handles all database operations with Supabase
 import os
 from dotenv import load_dotenv
 from supabase import create_client, Client
-import bcrypt
 from datetime import datetime
+import hashlib
 
 # Load environment variables
 load_dotenv()
@@ -25,13 +25,13 @@ supabase_admin: Client = create_client(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY)
 # ============================================================================
 
 def hash_password(password: str) -> str:
-    """Hash a password using bcrypt"""
-    return bcrypt.hashpw(password.encode(), bcrypt.gensalt()).decode()
+    """Simple hash for demo (in production use proper bcrypt)"""
+    return hashlib.sha256(password.encode()).hexdigest()
 
 
 def verify_password(password: str, hash: str) -> bool:
     """Verify a password against its hash"""
-    return bcrypt.checkpw(password.encode(), hash.encode())
+    return hash_password(password) == hash
 
 
 def get_user(email: str) -> dict | None:
