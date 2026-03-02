@@ -4,17 +4,21 @@ Configuration and Constants
 
 # Hotel Names
 HOTELS = [
-    "Porto Greco",
-    "Athens",
-    "Mykonos",
-    "Santorini",
+    "Porto Greco Beach & Village",
+    "Theros Resort",
+    "Apollon Hotel",
+    "Axel Crete Villaggio",
+    "Axel Beach Mykonos",
+    "KingScorpio Restaurant",
 ]
 
 # User Roles
 ROLES = {
-    "admin": {"label": "Administrator", "permissions": ["view", "edit", "upload", "delete"]},
-    "manager": {"label": "Manager", "permissions": ["view", "upload"]},
-    "viewer": {"label": "Viewer", "permissions": ["view"]},
+    "admin": {"label": "Administrator", "permissions": ["view", "edit", "upload", "delete"], "description": "Full access, can upload files"},
+    "group_director": {"label": "Group Director", "permissions": ["view", "compare", "export"], "description": "View all hotels"},
+    "hotel_manager": {"label": "Hotel Manager", "permissions": ["view", "upload"], "description": "View own hotel only"},
+    "accountant": {"label": "Accountant", "permissions": ["view", "export", "reports"], "description": "Financial reports only"},
+    "viewer": {"label": "Viewer", "permissions": ["view"], "description": "Read-only access"},
 }
 
 # Greek Month Names

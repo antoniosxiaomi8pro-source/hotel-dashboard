@@ -19,30 +19,68 @@ def login_page():
     col1, col2, col3 = st.columns(3)
     
     with col2:
-        st.title("🏨 COSMHOTEL BI")
+        st.title("🏨 COSMHOTEL GROUP")
         st.write("Hotel Management Dashboard")
         st.divider()
         
         email = st.text_input("📧 Email", placeholder="admin@cosmhotel.gr")
-        password = st.text_input("🔐 Password", type="password", placeholder="password123")
+        password = st.text_input("🔐 Password", type="password", placeholder="password")
         
         if st.button("🔓 Login", use_container_width=True):
             if email and password:
                 # Test credentials (hardcoded for demo)
                 test_users = {
                     "admin@cosmhotel.gr": "admin123",
-                    "manager@cosmhotel.gr": "manager123",
-                    "viewer@cosmhotel.gr": "viewer123"
+                    "admin2@cosmhotel.gr": "admin234",
+                    "director@cosmhotel.gr": "director123",
+                    "manager.porto@cosmhotel.gr": "manager123",
+                    "manager.theros@cosmhotel.gr": "manager123",
+                    "manager.apollon@cosmhotel.gr": "manager123",
+                    "manager.axelcrete@cosmhotel.gr": "manager123",
+                    "manager.axelmykonos@cosmhotel.gr": "manager123",
+                    "manager.kingscorpio@cosmhotel.gr": "manager123",
+                    "accountant@cosmhotel.gr": "accountant123",
+                    "viewer@cosmhotel.gr": "viewer123",
                 }
                 
                 if email in test_users and test_users[email] == password:
-                    # For demo, create a simple user object
+                    # Determine role based on email
+                    if "admin" in email:
+                        role = "admin"
+                        hotel = "Porto Greco Beach & Village" if email == "admin@cosmhotel.gr" else "Theros Resort"
+                    elif "director" in email:
+                        role = "group_director"
+                        hotel = "All Hotels"
+                    elif "accountant" in email:
+                        role = "accountant"
+                        hotel = "All Hotels (Finance)"
+                    elif "viewer" in email:
+                        role = "viewer"
+                        hotel = "Porto Greco Beach & Village"
+                    else:
+                        role = "hotel_manager"
+                        # Extract hotel from email
+                        if "porto" in email:
+                            hotel = "Porto Greco Beach & Village"
+                        elif "theros" in email:
+                            hotel = "Theros Resort"
+                        elif "apollon" in email:
+                            hotel = "Apollon Hotel"
+                        elif "axelcrete" in email:
+                            hotel = "Axel Crete Villaggio"
+                        elif "axelmykonos" in email:
+                            hotel = "Axel Beach Mykonos"
+                        elif "kingscorpio" in email:
+                            hotel = "KingScorpio Restaurant"
+                        else:
+                            hotel = "Porto Greco Beach & Village"
+                    
                     user = {
                         "id": "demo-user",
                         "email": email,
-                        "full_name": email.split("@")[0].title(),
-                        "hotel_name": "Porto Greco",
-                        "role": "admin" if "admin" in email else ("manager" if "manager" in email else "viewer")
+                        "full_name": email.split("@")[0].replace(".", " ").title(),
+                        "hotel_name": hotel,
+                        "role": role
                     }
                     
                     st.session_state.authenticated = True
@@ -59,9 +97,27 @@ def login_page():
         
         st.divider()
         st.write("**Demo Credentials:**")
-        st.write("- Admin: `admin@cosmhotel.gr` / `admin123`")
-        st.write("- Manager: `manager@cosmhotel.gr` / `manager123`")
-        st.write("- Viewer: `viewer@cosmhotel.gr` / `viewer123`")
+        
+        with st.expander("👤 Admin Users (Upload Files)"):
+            st.write("- `admin@cosmhotel.gr` / `admin123`")
+            st.write("- `admin2@cosmhotel.gr` / `admin234`")
+        
+        with st.expander("👨‍💼 Group Director (All Hotels)"):
+            st.write("- `director@cosmhotel.gr` / `director123`")
+        
+        with st.expander("🏨 Hotel Managers (Own Hotel)"):
+            st.write("- `manager.porto@cosmhotel.gr` / `manager123`")
+            st.write("- `manager.theros@cosmhotel.gr` / `manager123`")
+            st.write("- `manager.apollon@cosmhotel.gr` / `manager123`")
+            st.write("- `manager.axelcrete@cosmhotel.gr` / `manager123`")
+            st.write("- `manager.axelmykonos@cosmhotel.gr` / `manager123`")
+            st.write("- `manager.kingscorpio@cosmhotel.gr` / `manager123`")
+        
+        with st.expander("💰 Accountant (Finance Only)"):
+            st.write("- `accountant@cosmhotel.gr` / `accountant123`")
+        
+        with st.expander("👁️ Viewer (Read-Only)"):
+            st.write("- `viewer@cosmhotel.gr` / `viewer123`")
 
 
 def logout():
