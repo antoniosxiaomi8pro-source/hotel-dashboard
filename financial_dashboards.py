@@ -92,15 +92,25 @@ def show_pl_dashboard(hotel_name: str):
         st.plotly_chart(pl_fig, use_container_width=True)
     
     with col2:
-        st.write("**Waterfall Chart**")
-        waterfall_fig = go.Figure(go.Waterfall(
-            x=['Revenue', 'Costs', 'Profit'],
-            y=[pl_data['total_revenue'], -pl_data['total_costs'], pl_data['gross_profit']],
-            connector={"line": {"color": "rgba(63, 63, 63, 0.5)"}},
-            marker_color=['#00D96F', '#FF4757', '#0066CC']
-        ))
-        waterfall_fig.update_layout(height=400)
-        st.plotly_chart(waterfall_fig, use_container_width=True)
+        st.write("**Income Statement**")
+        # Create simple P&L table visualization
+        pl_items = [
+            {'Item': 'Gross Revenue', 'Amount': pl_data['total_revenue']},
+            {'Item': 'Less: Operating Costs', 'Amount': -pl_data['total_costs']},
+            {'Item': 'Net Profit', 'Amount': pl_data['gross_profit']}
+        ]
+        df_pl = pd.DataFrame(pl_items)
+        
+        fig_table = go.Figure(data=[go.Table(
+            header=dict(values=['<b>Item</b>', '<b>Amount (€)</b>'],
+                       fill_color='paleturquoise',
+                       align='left'),
+            cells=dict(values=[df_pl['Item'], df_pl['Amount'].apply(lambda x: f'{x:,.2f}')],
+                      fill_color='lavender',
+                      align='left')
+        )])
+        fig_table.update_layout(height=400)
+        st.plotly_chart(fig_table, use_container_width=True)
 
 
 def show_budget_vs_actual(hotel_name: str):
