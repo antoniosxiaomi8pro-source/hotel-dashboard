@@ -26,6 +26,9 @@ from group_dashboards import (
 from room_forecast_dashboard import show_room_forecast_dashboard, show_group_room_forecast
 from inventory_dashboard import show_inventory_dashboard, show_group_inventory_analysis
 from payroll_dashboard import show_payroll_dashboard, show_group_payroll_analysis
+from accounts_dashboard import show_accounts_dashboard, show_group_accounts_analysis
+from monthly_statements_dashboard import show_monthly_statements, show_group_monthly_statements
+from budget_dashboard import show_budget_dashboard, show_group_budget_analysis
 from upload_manager import render_upload_interface
 from hotels_management import render_hotels_management
 
@@ -118,6 +121,9 @@ with st.sidebar:
                 "📅 Room Forecast",
                 "📦 Inventory",
                 "💼 Payroll",
+                "📊 Accounts",
+                "📈 Monthly Statements",
+                "📉 Budget & Forecast",
                 "P&L Statement",
                 "Budget Analysis",
                 "Revenue",
@@ -178,6 +184,15 @@ if st.session_state.authenticated and st.session_state.user_role == "group_direc
     
     elif page == "💼 Payroll":
         show_group_payroll_analysis()
+    
+    elif page == "📊 Accounts":
+        show_group_accounts_analysis()
+    
+    elif page == "📈 Monthly Statements":
+        show_group_monthly_statements()
+    
+    elif page == "📉 Budget & Forecast":
+        show_group_budget_analysis()
     
     elif page == "Hotel Dashboard":
         st.title("📊 Individual Hotel Dashboard")
@@ -272,6 +287,15 @@ elif st.session_state.authenticated and st.session_state.user_role == "admin":
     
     elif page == "💼 Payroll":
         show_group_payroll_analysis()
+    
+    elif page == "📊 Accounts":
+        show_group_accounts_analysis()
+    
+    elif page == "📈 Monthly Statements":
+        show_group_monthly_statements()
+    
+    elif page == "📉 Budget & Forecast":
+        show_group_budget_analysis()
     
     elif page == "P&L Statement":
         st.title("💰 Profit & Loss Statement")
