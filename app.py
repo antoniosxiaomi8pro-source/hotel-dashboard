@@ -1,4 +1,4 @@
-"""
+""""
 COSMHOTEL GROUP BI Dashboard - Supabase Backend
 Main Streamlit Application with Advanced Financial Analytics
 Multi-property Group Reporting
