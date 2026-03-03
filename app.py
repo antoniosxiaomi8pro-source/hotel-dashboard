@@ -24,6 +24,7 @@ from group_dashboards import (
     render_occupancy_trends,
 )
 from room_forecast_dashboard import show_room_forecast_dashboard, show_group_room_forecast
+from inventory_dashboard import show_inventory_dashboard, show_group_inventory_analysis
 from upload_manager import render_upload_interface
 from hotels_management import render_hotels_management
 
@@ -92,6 +93,7 @@ with st.sidebar:
                 "Revenue Analysis",
                 "Occupancy Trends",
                 "📅 Room Forecast",
+                "📦 Inventory",
                 "Hotel Dashboard",
                 "P&L Statement",
                 "Budget Analysis",
@@ -112,6 +114,7 @@ with st.sidebar:
                 "Revenue Analysis",
                 "Occupancy Trends",
                 "📅 Room Forecast",
+                "📦 Inventory",
                 "P&L Statement",
                 "Budget Analysis",
                 "Revenue",
@@ -166,6 +169,9 @@ if st.session_state.authenticated and st.session_state.user_role == "group_direc
     
     elif page == "📅 Room Forecast":
         show_group_room_forecast()
+    
+    elif page == "📦 Inventory":
+        show_group_inventory_analysis()
     
     elif page == "Hotel Dashboard":
         st.title("📊 Individual Hotel Dashboard")
@@ -254,6 +260,9 @@ elif st.session_state.authenticated and st.session_state.user_role == "admin":
     
     elif page == "📅 Room Forecast":
         show_group_room_forecast()
+    
+    elif page == "📦 Inventory":
+        show_group_inventory_analysis()
     
     elif page == "P&L Statement":
         st.title("💰 Profit & Loss Statement")
