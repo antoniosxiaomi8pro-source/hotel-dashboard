@@ -78,7 +78,7 @@ def add_restaurant(hotel_id: str, name: str, cuisine_type: str, capacity: int):
         response = supabase_admin.table("restaurants").insert({
             "hotel_id": hotel_id,
             "name": name,
-            "cuisine_type": cuisine_type,
+            "type": cuisine_type,
             "capacity": capacity,
             "is_active": True,
             "created_at": datetime.now().isoformat()
@@ -223,7 +223,7 @@ def render_hotels_management():
             
             if restaurants:
                 st.dataframe(
-                    pd.DataFrame(restaurants)[["name", "cuisine_type", "capacity"]],
+                    pd.DataFrame(restaurants)[["name", "type", "capacity"]],
                     use_container_width=True
                 )
             else:
