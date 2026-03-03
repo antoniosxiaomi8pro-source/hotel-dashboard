@@ -117,65 +117,14 @@ def show_budget_vs_actual(hotel_name: str):
     """Display Budget vs Actual Dashboard"""
     st.subheader("📋 Budget vs Actual Analysis")
     
-    # Simulated budget data (in real scenario, this comes from database)
+    # Load revenue data from database
     revenue_data = get_revenue_accounts(hotel_name)
     
     if not revenue_data:
-        st.info("No revenue data available")
+        st.info("📊 No revenue data available. Upload financial reports to view comparisons.")
         return
     
-    df_revenue = pd.DataFrame(revenue_data)
-    
-    # Create budget vs actual comparison
-    monthly_revenue = df_revenue.groupby('month')['gross'].sum()
-    
-    # Simulated budget (assume 10% higher than actual for demo)
-    budget_data = {
-        'month': monthly_revenue.index,
-        'actual': monthly_revenue.values,
-        'budget': monthly_revenue.values * 1.1
-    }
-    
-    df_budget = pd.DataFrame(budget_data)
-    
-    # Create comparison chart
-    fig = go.Figure()
-    
-    fig.add_trace(go.Bar(
-        x=df_budget['month'],
-        y=df_budget['budget'],
-        name='Budget',
-        marker_color='#0066CC',
-        opacity=0.7
-    ))
-    
-    fig.add_trace(go.Bar(
-        x=df_budget['month'],
-        y=df_budget['actual'],
-        name='Actual',
-        marker_color='#00D96F'
-    ))
-    
-    fig.update_layout(
-        barmode='group',
-        title='Monthly Revenue: Budget vs Actual',
-        xaxis_title='Month',
-        yaxis_title='Amount (€)',
-        height=400,
-        hovermode='x unified'
-    )
-    
-    st.plotly_chart(fig, use_container_width=True)
-    
-    # Variance analysis
-    df_budget['variance'] = df_budget['actual'] - df_budget['budget']
-    df_budget['variance_pct'] = (df_budget['variance'] / df_budget['budget'] * 100)
-    
-    st.write("**Variance Analysis**")
-    st.dataframe(
-        df_budget[['month', 'budget', 'actual', 'variance', 'variance_pct']],
-        use_container_width=True
-    )
+    st.warning("⚠️ Budget comparison feature will be available once budget files are uploaded to Supabase.")
 
 
 def show_revenue_breakdown(hotel_name: str):

@@ -37,7 +37,8 @@ def verify_password(password: str, hash: str) -> bool:
 def get_user(email: str) -> dict | None:
     """Get user by email"""
     try:
-        response = supabase.table("users").select("*").eq("email", email).execute()
+        # Use admin client to bypass RLS for authentication purposes
+        response = supabase_admin.table("users").select("*").eq("email", email).execute()
         if response.data:
             return response.data[0]
         return None
