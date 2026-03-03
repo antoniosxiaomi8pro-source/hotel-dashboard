@@ -27,8 +27,8 @@ def add_hotel(name: str, code: str, hotel_type: str, location: str,
             "code": code,
             "type": hotel_type,
             "location": location,
-            "total_rooms": rooms,
-            "total_capacity": capacity,
+            "rooms": rooms,
+            "capacity_guests": capacity,
             "opening_date": opening_date,
             "is_active": True,
             "created_at": datetime.now().isoformat()
@@ -118,7 +118,7 @@ def render_hotels_management():
             
             # Display table
             st.dataframe(
-                df[["name", "code", "type", "location", "total_rooms", "total_capacity"]],
+                df[["name", "code", "type", "location", "rooms", "capacity_guests"]],
                 use_container_width=True
             )
             
@@ -211,8 +211,8 @@ def render_hotels_management():
             
             col1.metric("Code", hotel["code"])
             col2.metric("Type", hotel["type"])
-            col3.metric("Rooms", hotel["total_rooms"])
-            col4.metric("Capacity", hotel["total_capacity"])
+            col3.metric("Rooms", hotel["rooms"])
+            col4.metric("Capacity", hotel["capacity_guests"])
             
             st.markdown("---")
             
